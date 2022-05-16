@@ -2,21 +2,23 @@ package takeEx;
 
 public class Bus {
 
+	// 싱글톤으로 만들기 위한 인스턴스
 	private static Bus bIns;
 	
-	private int price = 0; // 돈
-	private int sPrice = 1000; // 학생 요금
-	private int wPrice = 1300; // 직장인 요금
-	private int pCnt = 0; // 승객 수
+	int money = 0; // 돈
+	int sPrice = 720; // 학생 요금
+	int wPrice = 1250; // 직장인 요금
+	int pCnt = 0; // 승객 수
 	
 	
-	// constructor
+	// 생성자를 private으로 막아둔다.
 	private Bus() {
 		System.out.println("----------------------");
 		System.out.println("103번 버스 최초 생성!");
 		System.out.println("----------------------");
 	}
 	
+	// 외부에서 사용할 메서드
 	public static Bus getBusIns() {
 		if(bIns == null) {
 			bIns = new Bus();
@@ -34,40 +36,38 @@ public class Bus {
 		 *  승객수도 늘리지 않는다.
 		 */
 		
-		if(people.payFee(wPrice) || people.payFee(sPrice)) {
-			if(people.getJob()=="직장인") {
-				this.price += wPrice;
-				people.payFee(price);
-				pCnt++;
-				System.out.println("----------------------");
-				System.out.println("삐빅! 직장인 입니다.");
-				System.out.printf("%s님의 잔액: %d \n", people.getName(),people.getMoney());
-				System.out.println("버스가 번 수입: " + price);
-				System.out.println("버스에 탄 사람 수: " + pCnt);
-				System.out.println("----------------------\n");
-			} else if(people.getJob()=="학생") {
-				this.price += sPrice;
-				people.payFee(price);
-				pCnt++;
-				System.out.println("----------------------");
-				System.out.println("삐빅! 학생 입니다.");
-				System.out.printf("%s님의 잔액: %d \n", people.getName(),people.getMoney());
-				System.out.println("버스가 번 수입: " + price);
-				System.out.println("버스에 탄 사람 수: " + pCnt);
-				System.out.println("----------------------\n");
-
-			} else {
-				System.out.println("직업을 확인할 수 없습니다.");
-			}
-		} else {
-			System.out.println("----------------------");
-			System.out.println("잔액이 부족합니다.");
-			System.out.printf("%s님의 잔액: %d \n", people.getName(),people.getMoney());
-			System.out.println("버스가 번 수입: " + price);
-			System.out.println("버스에 탄 사람 수: " + pCnt);
-			System.out.println("----------------------\n");
+		System.out.println("----------------------");
+		switch(people.job) {
+			case "직장인":
+				if(people.payFee(wPrice)) {
+					System.out.println("삐빅! 직장인 입니다.");
+					money += wPrice;
+					people.money -= wPrice;
+					pCnt++;
+				} else {
+					System.out.println("잔액이 부족합니다.");
+				}
+				break;
+				
+			case "학생":
+				if(people.payFee(sPrice)) {
+					System.out.println("삐빅! 학생 입니다.");
+					money += sPrice;
+					people.money -= sPrice;
+					pCnt++;
+				} else {
+					System.out.println("잔액이 부족합니다.");
+				}
+				break;
 			
+			default:
+				System.out.println("잘못된 직업입니다." + people.job);
+				break;
 		}
+		System.out.printf("%s님의 잔액: %d \n", people.name,people.money);
+		System.out.println("버스가 번 수입: " + money);
+		System.out.println("버스에 탄 사람 수: " + pCnt);
+		System.out.println("----------------------\n");		
 	}
 	
 }
