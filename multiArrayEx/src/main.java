@@ -28,8 +28,8 @@ public class main {
 		int val = 0; // 값
 		for(int i=0;i<arr2.length;i++) { // y축 반복
 			for(int j=0;j<arr2.length;j++) { // x축 반복
-				val = val+1; // 값 증가
-				arr2[i][j] = val; // 증가된 값을 배열에 대입
+				//val = val+1; // 값 증가
+				arr2[i][j] = i*5 + j+1; // 증가된 값을 배열에 대입
 				System.out.println("arr2[" + i + "][" + j + "] = " + arr2[i][j]);
 			}
 		}
