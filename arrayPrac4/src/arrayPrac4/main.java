@@ -1,5 +1,7 @@
 package arrayPrac4;
 
+import java.util.ArrayList;
+
 public class main {
 
 	public static void main(String[] args) {
@@ -25,7 +27,46 @@ public class main {
 		nArray[0][2] = "4";
 		nArray[1][1] = "4";
 		nArray[2][1] = "6";
-		nArray[2][2] = "5";
+		nArray[2][2] = "5";		
+		
+		System.out.println("-----");
+		for(int i=0;i<3;i++) { // y축 반복
+			
+			// 4,5,6의 존재여부 확인 boolean flag
+			boolean flag4 = false;
+			boolean flag5 = false;
+			boolean flag6 = false;
+			
+			// 가로 값 비교
+			for(int j=0;j<3;j++) {
+				if(nArray[i][j]=="4") {
+					flag4 = true;
+				} else if(nArray[i][j]=="5") {
+					flag5 = true;
+				} else if(nArray[i][j]=="6") {
+					flag6 = true;
+				}				
+			}
+			
+			// 값 채우기
+			for(int j=0;j<3;j++) { // x축 반복
+				if(nArray[i][j]==null) {
+					if(flag4==false) {
+						nArray[i][j] = "4";
+						flag4 = true;
+					} else if(flag5==false) {
+						nArray[i][j] = "5";
+						flag5 = true;
+					} else if(flag6==false) {
+						nArray[i][j] = "6";
+						flag6 = true;
+					}
+				}
+				System.out.print(nArray[i][j]+ " ");
+			}
+			System.out.println();
+		}
+		System.out.println("-----");		
 		
 	}
 	

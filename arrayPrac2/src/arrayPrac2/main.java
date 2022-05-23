@@ -10,55 +10,40 @@ public class main {
 		 *    (size: 10x10, variable: int)
 		 * 2. 규칙: 2,3,5,9,17,33,65 (초기값:2)
 		 * 3. 규칙을 분석하여 해당 숫자를 나타낼 수 있는 알고리즘 작성
-		 *    증가값=2의n제곱    
+		 *    rule = 2+2-1 [3]
+		 *    rule = 3+3-1 [5]
+		 *    rule = 5+5-1 [9]
+		 *    ...
+		 *    or rule = 2의 n승 + 1
+		 *    Math.pow(2,n) ? 
 		 * 4. 배열의 원소를 순회하여, 규칙에 맞는 값이 나올 경우 (짝),
 		 *    규칙에 어긋나는 경우 (쉿)을 출력
 		 * 5. 출력은 아래와 같습니다.
 		 */
 				
 		System.out.println("규칙에 맞는 박수치기 프로그램 시작!");
-		String[][] strArr = new String[10][10];	
-		int val = 0;
-		String strVal = "";
-		for(int i=0;i<strArr.length;i++) { // y축 반복
-			for(int j=0;j<strArr.length;j++) { // x축 반복	
+
+		int[][] arr = new int[10][10];		
+		
+		int value = 1; // 대입 초기값
+		int rule = 2; // 규칙 초기값
+		
+		for(int i=0;i<arr.length;i++) { // y축 반복
+			for(int j=0;j<arr.length;j++) { // x축 반복	
+		
+				arr[i][j] = value; // 1~100까지 값 대입
+				//arr[i][j] = (i*10)+(j+1);	//value 사용안할때			
 				
-				val = i*10 + j+1; // 1~100까지 숫자 값
-				
-				int pin = 2; // 규칙 초기값
-				int plus = 1;
-				// 규칙
-				for(int k=0;k<=100;k++) {
-					pin = val+(2*plus);
-					      1 + 2
-					
-					if(val==x) {
-						System.out.println("(짝)");
-					}else {
-						System.out.println("(쉿)");				
-					}					
-				}
-				
-				
-				2^0=0;
-				2^1=2;
-				2^2=4;
-				2^3=8;
-				2^4=16;
-				2^5=32;
-				2^6=64;
-				2^7=128;
-				2^8=256;
-				
-				
-						
-				
-				
-				
-				strArr[i][j] = strVal; 
-				System.out.print(strArr[i][j]+" ");
+				if(arr[i][j]==rule) { // 규칙에 해당되면 짝
+					System.out.print("(짝)");
+					rule = rule + (rule-1); // 규칙
+					//rule = (rule*2) - 1;
+				} else { // 아니면 쉿
+					System.out.print("(쉿)");					
+				}			
+				value++; // 1씩 증가
 			}
-			System.out.println();
+			System.out.println(); // 10개찍고 줄바꿈
 		}
 	}
 	

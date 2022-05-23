@@ -3,11 +3,7 @@ package arrayPrac3;
 public class People {
 
 	String name;
-	double grade = 0.0;
-	
-	public People() {
-		
-	}
+	double grade = 0.0;	
 	
 	public People(String name, double grade) {
 		this.name = name;
@@ -20,7 +16,12 @@ public class People {
 		System.out.println();
 	}
 	
-	
+	public void checkGrade() {
+		if(this.grade>=4.0) {
+			System.out.println("¿Ã∏ß: " + this.getName());
+		}
+	}
+		
 	public String getName() {
 		return name;
 	}
@@ -32,8 +33,6 @@ public class People {
 	}
 	public void setGrade(double grade) {
 		this.grade = grade;
-	}
-	
-	
+	}	
 	
 }

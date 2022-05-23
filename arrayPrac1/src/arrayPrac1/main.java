@@ -22,14 +22,14 @@ public class main {
 		// (size: 3x9, variable: char)
 		System.out.println("2차원 배열 출력 프로그램 시작!");
 		char[][] arr2 = new char[3][9];
-		char var = 'a';
+		char val = 'a';
 		for(int i=0;i<3;i++) { // y축 반복
 			for(int j=0;j<9;j++) { // x축 반복
-				int varChar = (int)var++;
-				if(varChar==123) {
-					varChar = 45;
+				int valChar = (int)val++;
+				if(valChar==123) {
+					valChar = 45;
 				}
-				arr2[i][j] = (char)varChar; 
+				arr2[i][j] = (char)valChar; 
 				System.out.print(arr2[i][j]+" ");
 			}
 			System.out.println();

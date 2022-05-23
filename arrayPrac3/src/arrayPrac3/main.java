@@ -28,6 +28,7 @@ public class main {
 		System.out.println("ArrayList 학점 관리 프로그램 시작!");
 		
 		ArrayList<People> pArrList = new ArrayList<People>();
+		pArrList.clear();
 		
 		pArrList.add(new People("이선민",4.5));
 		pArrList.add(new People("박재현",4.5));
@@ -40,30 +41,39 @@ public class main {
 		pArrList.add(new People("신이름",1.7));
 		pArrList.add(new People("김이름",2.8));
 		
-		System.out.println("--- 학점이 4.0 이상인 인원 목록 ---");		
+		
+		System.out.println("---학점이 4.0 이상인 인원 목록---");		
 		// 전체 배열 학점중에 4.0 이상인 사람 찾기
 		// 찾은 사람 출력		
+//		for(int i=0;i<pArrList.size();i++) {
+//			People p1 = pArrList.get(i);
+//			if(p1.getGrade()>=4.0) {
+//				System.out.println("이름 : " + p1.getName());
+//			}			
+//		}
 		for(int i=0;i<pArrList.size();i++) {
-			People p1 = pArrList.get(i);
-			if(p1.getGrade()>4.0) {
-				System.out.println("이름 : " + p1.getName());
-			}			
+			pArrList.get(i).checkGrade();
 		}		
-		System.out.println("----------------------------");
+		System.out.println("---------------------------");		
 		
-		System.out.println("--- 전체 인원의 학점 평균 ---");
 		double sum = 0.0;
 		int cnt = 0;
+//		for(int i=0;i<pArrList.size();i++) {
+//			cnt++;
+//			People p1 = pArrList.get(i);
+//			double grade = p1.getGrade();			
+//			sum = sum + grade;
+//		}
+		
 		for(int i=0;i<pArrList.size();i++) {
+			sum += pArrList.get(i).getGrade();
 			cnt++;
-			People p1 = pArrList.get(i);
-			double grade = p1.getGrade();			
-//			System.out.println("학점: " + grade);
-			sum = sum + grade;
 		}
-		double avg = sum / pArrList.size();
+		double avg = sum / pArrList.size();		
+		
+		System.out.println("---전체 인원의 학점 평균---");
 		System.out.println("학점 평균: " + avg);
-		System.out.println("-----------------------");
+		System.out.println("----------------------");
 		
 	}
 	
